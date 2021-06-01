@@ -20,7 +20,6 @@ public:
     std::string getTriangleString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const;
     virtual std::string getDrawString() const;
-    virtual ~Drawable() = 0;
 };
 
 #endif //ROTATION3D_DRAWABLE_H

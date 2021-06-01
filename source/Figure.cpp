@@ -25,5 +25,16 @@ std::vector<double> Figure::getCenterOfMass() const
 {
     using VectorAction::operator+;
     using VectorAction::operator/;
-    return (x + y + z) / 3.0;
+    return (x + y + z) / 2.0;
+}
+
+/**
+ * Compare operator /n Use VectorAction.h
+ * @return true if every value in fig1 is equal to fig2
+ */
+bool operator==(const Figure& fig1, const Figure& fig2)
+{
+    if (fig1.x == fig2.x && fig1.y == fig2.y && fig1.z == fig2.z && fig1.sP == fig2.sP)
+        return true;
+    return false;
 }

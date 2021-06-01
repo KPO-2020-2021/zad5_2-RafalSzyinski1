@@ -1,7 +1,3 @@
-//
-// Created by rafik on 22.04.2021.
-//
-
 #include "gtest/gtest.h"
 #include "MatrixAction.h"
 
