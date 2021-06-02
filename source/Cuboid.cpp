@@ -17,13 +17,13 @@ Cuboid::Cuboid(std::vector<double> _x, std::vector<double> _y, std::vector<doubl
 }
 
 /**
- * Override method to draw object in gnuplot
- * @return vector of object to draw
+ * Override method to draw object in gnuplot \n Use VectorAction.h
+ * @return list of object to draw
  */
-std::vector<std::string> Cuboid::getDrawString() const
+std::list<std::string> Cuboid::getDrawString() const
 {
     using namespace VectorAction;
-    std::vector<std::string> ret;
+    std::list<std::string> ret;
     ret.push_back(Drawable::getParallelogramString(sP, x, y));
     ret.push_back(Drawable::getParallelogramString(sP, x, z));
     ret.push_back(Drawable::getParallelogramString(sP, y, z));

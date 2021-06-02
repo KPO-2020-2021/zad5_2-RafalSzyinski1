@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 
 class Drawable
 {
@@ -20,7 +21,7 @@ public:
     std::string getParallelogramString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getTriangleString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const;
-    virtual std::vector<std::string> getDrawString() const = 0;
+    virtual std::list<std::string> getDrawString() const = 0;
 };
 
 #endif //ROTATION3D_DRAWABLE_H
