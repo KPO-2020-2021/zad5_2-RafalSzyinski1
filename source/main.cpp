@@ -1,6 +1,7 @@
 #include "Cuboid.h"
 #include "Pyramid.h"
 #include "Plane.h"
+#include "Tetrahedron.h"
 #include "Transform.h"
 #include "Plot.h"
 
@@ -10,7 +11,7 @@
 int main()
 {
     Plot a;
-    Plane b({20, 0, 0}, {0, 20, 0}, {0, 0, 20}, {1, 1, 1});
+    Tetrahedron b({20, 0, 0}, {0, 20, 0}, {0, 0, 20}, {1, 1, 1});
     Transform::scaleToCenterOfMass(b, 2);
     double i = 0;
     while (true)
