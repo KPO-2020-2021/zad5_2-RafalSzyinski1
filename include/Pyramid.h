@@ -1,3 +1,7 @@
+/**
+ * @file Pyramid.h
+ * Pyramid class
+ */
 #ifndef ROTATION3D_PYRAMID_H
 #define ROTATION3D_PYRAMID_H
 

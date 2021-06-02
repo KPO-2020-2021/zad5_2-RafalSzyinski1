@@ -1,3 +1,7 @@
+/**
+ * @file Cuboid.h
+ * Cuboid class
+ */
 #ifndef ROTATION3D_CUBOID_H
 #define ROTATION3D_CUBOID_H
 

@@ -1,9 +1,13 @@
+/**
+ * @file Plot.cpp
+ * Definition of Plot class
+ */
 #include "Plot.h"
 
-Plot::Plot() : Gnuplot(), objects()
-{
-}
-
+/**
+ * Add figure to drawing objects
+ * @param fig figure to draw
+ */
 void Plot::add(const Drawable& fig)
 {
     auto obj = fig.getDrawString();
@@ -11,6 +15,8 @@ void Plot::add(const Drawable& fig)
         objects.push_back(" set object " + std::to_string(objects.size() + 1) + " " + i);
 }
 
+
+/** Draw every object which add with add method and clear them */
 void Plot::drawAndClear()
 {
     sendcommand("set xyplane at 0");

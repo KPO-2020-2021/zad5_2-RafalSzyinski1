@@ -1,3 +1,7 @@
+/**
+ * @file Cuboid.cpp
+ * Definition of Cuboid.cpp class
+ */
 #include "Cuboid.h"
 #include "VectorAction.h"
 

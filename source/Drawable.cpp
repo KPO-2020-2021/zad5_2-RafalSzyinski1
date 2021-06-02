@@ -8,12 +8,12 @@
 
 #include <sstream>
 
-/// Default constructor set color to red
+/** Default constructor set color to red */
 Drawable::Drawable() : color("#FF0000")
 {
 }
 
-/// Parametric constructor
+/** Parametric constructor */
 Drawable::Drawable(std::string _color)
 {
     changeColor(std::move(_color));
@@ -85,7 +85,7 @@ std::string Drawable::getLineString(const std::vector<double>& sP, const std::ve
     return ss.str();
 }
 
-/// @return style of object \n
+/** @return style of object */
 std::string Drawable::getStyle() const
 {
     return R"(fs border lc "#000000" transparent solid fc rgb ")" + color + "\"";

@@ -29,7 +29,7 @@ std::vector<double> Figure::getCenterOfMass() const
 }
 
 /**
- * Compare operator /n Use VectorAction.h
+ * Compare operator \n Use VectorAction.h
  * @return true if every value in fig1 is equal to fig2
  */
 bool operator==(const Figure& fig1, const Figure& fig2)
