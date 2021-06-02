@@ -39,6 +39,11 @@ void Transform::rotateAroundPoint(Figure& figure, double angle, const std::vecto
     rotateAroundCenterOfMass(figure, angle);
 }
 
+/**
+ * Scales figure relative to the center \n Use VectorAction.h and MatrixAction.h
+ * @param figure scales figure
+ * @param scale scale
+ */
 void Transform::scaleToCenterOfMass(Figure& figure, double scale)
 {
     using namespace VectorAction;

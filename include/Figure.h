@@ -21,7 +21,7 @@ public:
     Figure(std::vector<double> _x, std::vector<double> _y, std::vector<double> _z, std::vector<double> _sP = {0, 0, 0});
     std::vector<double> getCenterOfMass() const;
     friend bool operator==(const Figure& fig1, const Figure& fig2);
-    std::string getDrawString() const override = 0;
+    std::vector<std::string> getDrawString() const override = 0;
 };
 
 

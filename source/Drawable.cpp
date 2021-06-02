@@ -49,7 +49,7 @@ std::string Drawable::getParallelogramString(const std::vector<double>& sP, cons
     using namespace VectorAction;
     std::stringstream ss;
     ss << "polygon from " << sP << " to " << (sP + a) << " to " << (sP + a + b) << " to " << (sP + b) << " to " << sP;
-    ss << getDrawString();
+    ss << getStyle();
     return ss.str();
 }
 
@@ -66,7 +66,7 @@ std::string Drawable::getTriangleString(const std::vector<double>& sP, const std
     using namespace VectorAction;
     std::stringstream ss;
     ss << "polygon from " << sP << " to " << (sP + a) << " to " << (sP + b) << " to " << sP;
-    ss << getDrawString();
+    ss << getStyle();
     return ss.str();
 }
 
@@ -81,12 +81,12 @@ std::string Drawable::getLineString(const std::vector<double>& sP, const std::ve
     using namespace VectorAction;
     std::stringstream ss;
     ss << "polygon from " << sP << " to " << eP << " to " << -sP;
-    ss << getDrawString();
+    ss << getStyle();
     return ss.str();
 }
 
 /// @return style of object \n
-std::string Drawable::getDrawString() const
+std::string Drawable::getStyle() const
 {
     return R"(fs border lc "#000000" transparent solid fc rgb ")" + color + "\"";
 }
