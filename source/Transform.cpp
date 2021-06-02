@@ -35,7 +35,7 @@ void Transform::rotateAroundPoint(Figure& figure, double angle, const std::vecto
     using namespace VectorAction;
     using namespace MatrixAction;
     matrix<double> m({{std::cos(M_PI/180.0 * angle), -std::sin(M_PI/180.0 * angle), 0}, {std::sin(M_PI/180.0 * angle), std::cos(M_PI/180.0 * angle), 0}, {0, 0, 1}});
-    figure.sP = (m * (figure.getCenterOfMass() + figure.sP - point)) +  point - figure.getCenterOfMass();;
+    figure.sP = (m * (figure.getCenterOfMass() + figure.sP - point)) +  point - figure.getCenterOfMass();
     rotateAroundCenterOfMass(figure, angle);
 }
 
@@ -54,6 +54,17 @@ void Transform::scaleToCenterOfMass(Figure& figure, double scale)
     figure.y = ((figure.y - cM) * scale) + (cM * scale);
     figure.z = ((figure.z - cM) * scale) + (cM * scale);
     figure.sP = cP - (cM * scale);
+}
+
+/**
+ * Translate figure \n Use VectorAction.h
+ * @param figure figure
+ * @param vec translation vector
+ */
+void Transform::translate(Figure& figure, const std::vector<double>& vec)
+{
+    using namespace VectorAction;
+    figure.sP = figure.sP + vec;
 }
 
 

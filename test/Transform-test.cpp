@@ -24,7 +24,7 @@ TEST (TransformTest, rotateAroundPoint)
     EXPECT_EQ(b, Cuboid({0, 1, 0}, {-1, 0, 0}, {0, 0, 1}, {-1, 1, 1}));
 }
 
-TEST (TransfromTest, scaleToCenterOfMass)
+TEST (TransformTest, scaleToCenterOfMass)
 {
     Cuboid a({1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {-0.5, -0.5, -0.5});
     Transform::scaleToCenterOfMass(a, 2);
@@ -33,4 +33,11 @@ TEST (TransfromTest, scaleToCenterOfMass)
     Cuboid b({1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1, 1, 1});
     Transform::scaleToCenterOfMass(b, 0.5);
     EXPECT_EQ(b, Cuboid({0.5, 0, 0}, {0, 0.5, 0}, {0, 0, 0.5}, {1.25, 1.25, 1.25}));
+}
+
+TEST (TransformTest, translate)
+{
+    Cuboid a({1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {-0.5, -0.5, -0.5});
+    Transform::translate(a, std::vector<double>({2, 2, 2}));
+    EXPECT_EQ(a, Cuboid({1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1.5, 1.5, 1.5}));
 }
