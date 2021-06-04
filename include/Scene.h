@@ -1,3 +1,7 @@
+/**
+ * @file Scene.h
+ * Scene class
+ */
 #ifndef ROTATION3D_SCENE_H
 #define ROTATION3D_SCENE_H
 
@@ -16,7 +20,7 @@ class Scene
 {
 private:
     std::list<std::shared_ptr<Figure> > objects;
-    std::list<AutoDrone> drones;
+    std::list<std::shared_ptr<AutoDrone> > drones;
     Plot plt;
     Options option;
     std::thread t1;

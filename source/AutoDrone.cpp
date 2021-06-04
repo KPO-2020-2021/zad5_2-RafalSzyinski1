@@ -11,7 +11,7 @@
  * @param x position in x axis
  * @param y position in y axis
  */
-AutoDrone::AutoDrone(double x, double y) : Drone(x, y), flying(false)
+AutoDrone::AutoDrone(double x, double y, const Scene& _scene) : Drone(x, y), flying(false), dronePath(*this, _scene)
 {
 }
 
@@ -63,7 +63,52 @@ void AutoDrone::rotateLeft()
 }
 
 /** Flying method */
-void AutoDrone::fly()
+void AutoDrone::fly(double angle, double distance)
 {
-    rotateLeft();
+    spinPropellers();
+    if (!flying)
+    {
+        dronePath.makeMoves(angle, distance);
+        flying = true;
+    }
+    else
+    {
+        switch (dronePath.getNextMove())
+        {
+            case FlyStates::NONE:
+                break;
+            case FlyStates::ASCENT:
+                moveUp();
+                break;
+            case FlyStates::FLYING:
+                moveStraight();
+                break;
+            case FlyStates::LANDING:
+                moveDown();
+                break;
+            case FlyStates::ROTATE_LEFT:
+                rotateLeft();
+                break;
+            case FlyStates::ROTATE_RIGHT:
+                rotateRight();
+                break;
+            case FlyStates::STOP:
+                break;
+            case FlyStates::END:
+                flying = false;
+                break;
+        }
+    }
+}
+
+/**
+ * Override method to draw object in gnuplot
+ * @return list of object to draw
+ */
+std::list<std::string> AutoDrone::getDrawString() const
+{
+    auto ret = Drone::getDrawString();
+    auto path = dronePath.getDrawString();
+    ret.insert(ret.end(), path.begin(), path.end());
+    return ret;
 }

@@ -32,10 +32,16 @@ constexpr double SPEED = 0.5;
 /// One step of propeller
 constexpr double PROPELLER_SPEED = 15;
 
+/// Altitude
+constexpr double MAX_ALTITUDE = 90;
+
 /// Size of map
 constexpr double MAP_SIZE = 120;
 
 /// Options for program menu
 enum class Options{NONE, EXIT};
+
+/// Fly state
+enum class FlyStates{NONE, ASCENT, FLYING, LANDING, ROTATE_LEFT, ROTATE_RIGHT, STOP, END};
 
 #endif //ROTATION3D_CONSTANTS_H

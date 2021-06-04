@@ -24,8 +24,9 @@ protected:
 
 public:
     AutoDrone() = delete;
-    AutoDrone(double x, double y);
-    void fly();
+    AutoDrone(double x, double y, const Scene& _scene);
+    void fly(double angle, double distance);
+    std::list<std::string> getDrawString() const override;
 };
 
 

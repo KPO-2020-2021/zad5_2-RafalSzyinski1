@@ -19,8 +19,7 @@ This should generate:
 
 ### Doxygen and graph
 
-* I make graph to zad5_2 because this code is mess and I will rewrite this later. 
-
+* [graph](docs/diagram.class.violet.html)   
 ### VectorAction 
 
 * Doesn't count vectors because I use std::vector and I can't modify the constructor and destructors. 

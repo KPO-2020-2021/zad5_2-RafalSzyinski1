@@ -80,7 +80,7 @@ std::string Drawable::getLineString(const std::vector<double>& sP, const std::ve
 {
     using namespace VectorAction;
     std::stringstream ss;
-    ss << "polygon from " << sP << " to " << eP << " to " << -sP;
+    ss << "polygon from " << sP << " to " << eP << " to " << sP;
     ss << getStyle();
     return ss.str();
 }
