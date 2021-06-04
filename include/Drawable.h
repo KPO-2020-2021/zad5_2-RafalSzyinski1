@@ -17,10 +17,10 @@ private:
 public:
     Drawable();
     explicit Drawable(std::string _color);
-    void changeColor(std::string _color);
     std::string getParallelogramString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getTriangleString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const;
+    virtual void changeColor(std::string _color);
     virtual std::list<std::string> getDrawString() const = 0;
 };
 

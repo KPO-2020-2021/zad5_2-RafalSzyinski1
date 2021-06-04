@@ -3,6 +3,7 @@
  * Definition of Plot class
  */
 #include "Plot.h"
+#include "Constants.h"
 
 /**
  * Add figure to drawing objects
@@ -20,9 +21,9 @@ void Plot::add(const Drawable& fig)
 void Plot::drawAndClear()
 {
     sendcommand("set xyplane at 0");
-    sendcommand("set xrange [-60:60]");
-    sendcommand("set yrange [-60:60]");
-    sendcommand("set zrange [-60:60]");
+    sendcommand("set xrange [" + std::to_string(-MAP_SIZE) + ":"  + std::to_string(MAP_SIZE) + "]");
+    sendcommand("set yrange [" + std::to_string(-MAP_SIZE) + ":"  + std::to_string(MAP_SIZE) + "]");
+    sendcommand("set zrange [" + std::to_string(-MAP_SIZE) + ":"  + std::to_string(MAP_SIZE) + "]");
     sendcommand("unset border");
     sendcommand("unset tics");
 

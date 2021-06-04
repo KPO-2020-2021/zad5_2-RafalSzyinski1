@@ -12,14 +12,16 @@ class Drone : public Cuboid
 {
 private:
     std::vector<Propeller> propellers;
-public:
-    explicit Drone(double x = 0, double y = 0);
-    std::list<std::string> getDrawString() const override;
+protected:
     void spin(double angle);
     void move(const std::vector<double>& vec);
+    Propeller& operator[](int index);
+public:
+    explicit Drone(double x = 0, double y = 0);
     std::vector<double> getPosition() const;
     const std::vector<double>& getDirection() const;
-    Propeller& operator[](int index);
+    std::list<std::string> getDrawString() const override;
+    void changeColor(std::string _color) override;
 };
 
 

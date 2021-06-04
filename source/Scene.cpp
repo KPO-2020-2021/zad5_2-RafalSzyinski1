@@ -15,6 +15,10 @@ Scene::Scene() : plt(), objects(), drones(), option(Options::NONE)
 
     addTetrahedron(Tetrahedron({10, 0, 0}, {0, 10, 0}, {0, 0, 30}, {20, -5, 0}));
 
+    AutoDrone ad(-20, 20);
+    ad.changeColor("#777777");
+    drones.emplace_back(ad);
+
     t1 = std::thread([this] { return getOption(option); });
 }
 
@@ -27,6 +31,7 @@ void Scene::getOption(Options& option)
 {
     while (option != Options::EXIT)
     {
+        printMenu();
         char opt;
         std::cin >> opt;
         switch (opt)
@@ -39,6 +44,13 @@ void Scene::getOption(Options& option)
                 break;
         }
     }
+}
+
+
+void Scene::printMenu()
+{
+    std::cout << "Menu: " << std::endl
+              << "0 - Exit" << std::endl;
 }
 
 void Scene::draw()
@@ -75,13 +87,10 @@ void Scene::run()
 {
     while (true)
     {
+        drones.back().fly();
         draw();
         if (option == Options::EXIT)
             break;
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
-
-
-
-

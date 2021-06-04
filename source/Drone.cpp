@@ -82,3 +82,11 @@ Propeller& Drone::operator[](int index)
 {
     return propellers.at(index);
 }
+
+/** Override method to change color of object */
+void Drone::changeColor(std::string _color)
+{
+    for (auto& i : propellers)
+        i.changeColor(_color);
+    Drawable::changeColor(_color);
+}

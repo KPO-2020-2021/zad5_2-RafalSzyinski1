@@ -1,3 +1,7 @@
+/**
+ * @file AutoDrone.h
+ * AutoDrone class
+ */
 #ifndef ROTATION3D_AUTODRONE_H
 #define ROTATION3D_AUTODRONE_H
 
@@ -7,7 +11,21 @@
 class AutoDrone : public Drone
 {
 private:
-    
+    DronePath dronePath;
+    bool flying;
+
+protected:
+    void spinPropellers();
+    void moveUp();
+    void moveDown();
+    void moveStraight();
+    void rotateRight();
+    void rotateLeft();
+
+public:
+    AutoDrone() = delete;
+    AutoDrone(double x, double y);
+    void fly();
 };
 
 

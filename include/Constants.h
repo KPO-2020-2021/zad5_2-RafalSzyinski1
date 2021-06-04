@@ -26,6 +26,16 @@ constexpr double DRONE_WIDTH = 15;
 /// Drone length
 constexpr double DRONE_LENGTH = 20;
 
+/// One step of drone
+constexpr double SPEED = 0.5;
+
+/// One step of propeller
+constexpr double PROPELLER_SPEED = 15;
+
+/// Size of map
+constexpr double MAP_SIZE = 120;
+
+/// Options for program menu
 enum class Options{NONE, EXIT};
 
 #endif //ROTATION3D_CONSTANTS_H

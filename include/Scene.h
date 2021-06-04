@@ -24,6 +24,7 @@ private:
     friend class DronePath;
 
     static void getOption(Options& option);
+    static void printMenu();
 public:
     Scene();
     ~Scene();

@@ -17,6 +17,7 @@ public:
     void spin(double angle);
     void move(const std::vector<double>& vec);
     void rotateAround(double angle, const std::vector<double>& vec);
+    void changeColor(std::string _color) override;
     std::list<std::string> getDrawString() const override;
 };
 

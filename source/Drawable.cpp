@@ -32,7 +32,7 @@ void Drawable::changeColor(std::string _color)
         throw std::invalid_argument("Wrong format of color");
 
     for (int i = 1; i < _color.size(); ++i)
-        if ((_color[i] > 70 || _color[i] < 65) && (_color[i] > 57 || _color[i] < 48))
+        if ((_color[i] > 'F' || _color[i] < 'A') && (_color[i] > '9' || _color[i] < '0'))
             throw std::invalid_argument("Wrong format of color");
     color = _color;
 }

@@ -24,6 +24,13 @@ Propeller::Propeller(const std::vector<double>& centerPoint)
     cuboids.push_back(temp);
 }
 
+/** Override method to change color of object */
+void Propeller::changeColor(std::string _color)
+{
+    for (auto& i : cuboids)
+        i.changeColor(_color);
+}
+
 /**
  * Override method to draw object in gnuplot \n Use VectorAction.h
  * @return list of object to draw
@@ -59,4 +66,3 @@ void Propeller::rotateAround(double angle, const std::vector<double>& vec)
     for (auto& i : cuboids)
         Transform::rotateAroundPoint(i, angle, vec);
 }
-
