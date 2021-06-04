@@ -1,0 +1,11 @@
+#ifndef ROTATION3D_DRONEPATH_H
+#define ROTATION3D_DRONEPATH_H
+
+
+class DronePath
+{
+
+};
+
+
+#endif //ROTATION3D_DRONEPATH_H

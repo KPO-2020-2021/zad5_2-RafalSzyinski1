@@ -26,4 +26,6 @@ constexpr double DRONE_WIDTH = 15;
 /// Drone length
 constexpr double DRONE_LENGTH = 20;
 
+enum class Options{NONE, EXIT};
+
 #endif //ROTATION3D_CONSTANTS_H
