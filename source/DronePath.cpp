@@ -77,7 +77,7 @@ void DronePath::fillRotateMoves(double angle)
         angle = 360 + angle;
     if (angle > 180)
     {
-        angle = angle - 180;
+        angle = 360 - angle;
         double times = angle / SPEED;
         for (int i = 0; i < times; ++i)
             moves.push_back(FlyStates::ROTATE_LEFT);
