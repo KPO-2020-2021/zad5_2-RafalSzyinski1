@@ -33,5 +33,3 @@ std::list<std::string> Plane::getDrawString() const
     ret.push_back(Drawable::getParallelogramString(nP, -y, z - x));
     return ret;
 }
-
-

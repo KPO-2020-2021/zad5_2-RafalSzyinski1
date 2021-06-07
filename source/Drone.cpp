@@ -7,6 +7,13 @@
 #include "VectorAction.h"
 #include "Transform.h"
 
+
+/** @return reference to propeller */
+Propeller& Drone::getPropellerAt(int index)
+{
+    return propellers.at(index);
+}
+
 /**
  * Parametric constructor \n Use VectorAction.h
  * @param x position in x axis
@@ -21,6 +28,37 @@ Drone::Drone(double x, double y) : Cuboid({DRONE_WIDTH, 0, 0}, {0, DRONE_LENGTH,
     propellers.emplace_back(sP + Figure::x + Figure::z + heightOfPropeller);
     propellers.emplace_back(sP + Figure::y + Figure::z + heightOfPropeller);
     propellers.emplace_back(sP + Figure::x + Figure::y + Figure::z + heightOfPropeller);
+}
+
+/** Use Transform method to rotate drone */
+void Drone::spin(double angle)
+{
+    using VectorAction::operator+;
+    Transform::rotateAroundCenterOfMass(*this, angle);
+    for (auto& i : propellers)
+        i.rotateAround(angle, sP + getCenterOfMass());
+}
+
+/** Use Transform method to move drone */
+void Drone::move(const std::vector<double>& vec)
+{
+    Transform::translate(*this, vec);
+    for(auto& i : propellers)
+        i.move(vec);
+}
+
+/** @return const vector of direction */
+const std::vector<double>& Drone::getDirection() const
+{
+    return y;
+}
+
+/** Override method to change color of object */
+void Drone::changeColor(std::string _color)
+{
+    for (auto& i : propellers)
+        i.changeColor(_color);
+    Drawable::changeColor(_color);
 }
 
 /**
@@ -45,48 +83,4 @@ std::list<std::string> Drone::getDrawString() const
     ret.push_back(getTriangleString(sP + y + x + z, -x, cM - (x + z)));
     ret.push_back(getTriangleString(sP + y + x, z, cM - x));
     return ret;
-}
-
-/** Use Transform method to rotate drone */
-void Drone::spin(double angle)
-{
-    using VectorAction::operator+;
-    Transform::rotateAroundCenterOfMass(*this, angle);
-    for (auto& i : propellers)
-        i.rotateAround(angle, sP + getCenterOfMass());
-}
-
-/** Use Transform method to move drone */
-void Drone::move(const std::vector<double>& vec)
-{
-    Transform::translate(*this, vec);
-    for(auto& i : propellers)
-        i.move(vec);
-}
-
-/** @return position of drone center point  */
-std::vector<double> Drone::getPosition() const
-{
-    using VectorAction::operator+;
-    return sP + getCenterOfMass();
-}
-
-/** @return const vector of direction */
-const std::vector<double>& Drone::getDirection() const
-{
-    return y;
-}
-
-/** @return reference to propeller */
-Propeller& Drone::operator[](int index)
-{
-    return propellers.at(index);
-}
-
-/** Override method to change color of object */
-void Drone::changeColor(std::string _color)
-{
-    for (auto& i : propellers)
-        i.changeColor(_color);
-    Drawable::changeColor(_color);
 }

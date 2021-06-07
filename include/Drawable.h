@@ -14,12 +14,12 @@ class Drawable
 private:
     std::string color;
     std::string getStyle() const;
-public:
-    Drawable();
-    explicit Drawable(std::string _color);
+protected:
     std::string getParallelogramString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getTriangleString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const;
     std::string getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const;
+public:
+    Drawable();
     virtual void changeColor(std::string _color);
     virtual std::list<std::string> getDrawString() const = 0;
 };

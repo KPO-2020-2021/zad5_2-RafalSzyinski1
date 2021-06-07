@@ -7,6 +7,21 @@
 #include "MatrixAction.h"
 
 /**
+ * Rotate figure around selected point in Z axis \n Use VectorAction.h and MatrixAction.h
+ * @param figure rotated figure
+ * @param angle angle of rotation
+ * @param point selected point
+ */
+void Transform::rotateAroundPoint(Figure& figure, double angle, const std::vector<double>& point)
+{
+    using namespace VectorAction;
+    using namespace MatrixAction;
+    matrix<double> m({{std::cos(M_PI/180.0 * angle), -std::sin(M_PI/180.0 * angle), 0}, {std::sin(M_PI/180.0 * angle), std::cos(M_PI/180.0 * angle), 0}, {0, 0, 1}});
+    figure.sP = (m * (figure.getCenterOfMass() + figure.sP - point)) +  point - figure.getCenterOfMass();
+    rotateAroundCenterOfMass(figure, angle);
+}
+
+/**
  * Rotate figure around center of mass in Z axis \n Use VectorAction.h and MatrixAction.h
  * @param figure rotated figure
  * @param angle angle of rotation
@@ -22,21 +37,6 @@ void Transform::rotateAroundCenterOfMass(Figure& figure, double angle)
     figure.y = (m * (figure.y - cM)) + (m * cM);
     figure.z = (m * (figure.z - cM)) + (m * cM);
     figure.sP = (cM - (m * cM)) + figure.sP;
-}
-
-/**
- * Rotate figure around selected point in Z axis \n Use VectorAction.h and MatrixAction.h
- * @param figure rotated figure
- * @param angle angle of rotation
- * @param point selected point
- */
-void Transform::rotateAroundPoint(Figure& figure, double angle, const std::vector<double>& point)
-{
-    using namespace VectorAction;
-    using namespace MatrixAction;
-    matrix<double> m({{std::cos(M_PI/180.0 * angle), -std::sin(M_PI/180.0 * angle), 0}, {std::sin(M_PI/180.0 * angle), std::cos(M_PI/180.0 * angle), 0}, {0, 0, 1}});
-    figure.sP = (m * (figure.getCenterOfMass() + figure.sP - point)) +  point - figure.getCenterOfMass();
-    rotateAroundCenterOfMass(figure, angle);
 }
 
 /**
@@ -66,5 +66,3 @@ void Transform::translate(Figure& figure, const std::vector<double>& vec)
     using namespace VectorAction;
     figure.sP = figure.sP + vec;
 }
-
-

@@ -20,15 +20,22 @@ class Scene
 {
 private:
     std::list<std::shared_ptr<Figure> > objects;
-    std::list<std::shared_ptr<AutoDrone> > drones;
+    std::vector<std::shared_ptr<AutoDrone> > drones;
     Plot plt;
     Options option;
     std::thread t1;
 
     friend class DronePath;
-
+protected:
     static void getOption(Options& option);
     static void printMenu();
+    void chooseDrone();
+    void printDrones() const;
+    void printFigures() const;
+    void addFigure();
+    void delFigure();
+    void makeMarsArea();
+    void addDrones();
 public:
     Scene();
     ~Scene();

@@ -29,6 +29,16 @@ std::vector<double> Figure::getCenterOfMass() const
 }
 
 /**
+ * Use VectorAction.h
+ * @return position of figure center point
+ */
+std::vector<double> Figure::getPosition() const
+{
+    using VectorAction::operator+;
+    return sP + getCenterOfMass();
+}
+
+/**
  * Compare operator \n Use VectorAction.h
  * @return true if every value in fig1 is equal to fig2
  */

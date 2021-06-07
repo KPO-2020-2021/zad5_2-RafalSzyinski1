@@ -17,29 +17,19 @@ This should generate:
 
 ## Program
 
-### Doxygen and graph
+Program has been rewritten but works like the previous one
 
-* [graph](docs/diagram.class.violet.html)   
-### VectorAction 
+### Extensions
 
-* Doesn't count vectors because I use std::vector and I can't modify the constructor and destructors. 
-
-### Hierarchy
-
-* There are two class inherits Drone class and Figure class.
+* Every figure you can rotate around Z axis and determine the location (in program)
+* Each of figure have unique drawing form, knowing it, you can create various forms of figures
+* In program I created nice area there are some figure composed of many different figures
 
 ### Transforming
 
-* Every thing transform right.
+* Every thing transform right, and there are some tests.
 
-### Drone class
+### Graph
 
-* Can be colored on different color.
-* Have 4 propellers that can rotate in correct direction depend on rotation and flying.
-* Drone can rotate and move in straight line.
- 
-### Scene
+![graph](docs/Graph-Drone.png)
 
-* Draw every element in other thread so you can operate on menu and fly at the same time.
-* Draw drone path.
-* There are 4 drones that can fly at the same time.

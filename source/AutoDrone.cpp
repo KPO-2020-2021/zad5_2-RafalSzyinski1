@@ -6,35 +6,24 @@
 #include "Constants.h"
 #include "VectorAction.h"
 
-/**
- * Parametric constructor
- * @param x position in x axis
- * @param y position in y axis
- */
-AutoDrone::AutoDrone(double x, double y, const Scene& _scene) : Drone(x, y), flying(false), dronePath(*this, _scene)
-{
-}
-
 /** Spin propellers while drone flying */
 void AutoDrone::spinPropellers()
 {
-    Drone::operator[](0).spin(-PROPELLER_SPEED);
-    Drone::operator[](1).spin(PROPELLER_SPEED);
-    Drone::operator[](2).spin(-PROPELLER_SPEED);
-    Drone::operator[](3).spin(PROPELLER_SPEED);
+    getPropellerAt(0).spin(-PROPELLER_SPEED);
+    getPropellerAt(1).spin(PROPELLER_SPEED);
+    getPropellerAt(2).spin(-PROPELLER_SPEED);
+    getPropellerAt(3).spin(PROPELLER_SPEED);
 }
 
 /** Move drone up  */
 void AutoDrone::moveUp()
 {
-    spinPropellers();
     move({0, 0, SPEED});
 }
 
 /** Move drone down */
 void AutoDrone::moveDown()
 {
-    spinPropellers();
     move({0, 0, -SPEED});
 }
 
@@ -49,34 +38,43 @@ void AutoDrone::moveStraight()
 /** Rotate drone right and spin propellers */
 void AutoDrone::rotateRight()
 {
-    Drone::operator[](0).spin(-PROPELLER_SPEED / 2);
-    Drone::operator[](3).spin(PROPELLER_SPEED / 2);
+    getPropellerAt(0).spin(-PROPELLER_SPEED / 2);
+    getPropellerAt(3).spin(PROPELLER_SPEED / 2);
     spin(-SPEED);
 }
 
 /** Rotate drone left and spin propellers */
 void AutoDrone::rotateLeft()
 {
-    Drone::operator[](1).spin(PROPELLER_SPEED / 2);
-    Drone::operator[](2).spin(-PROPELLER_SPEED / 2);
+    getPropellerAt(1).spin(PROPELLER_SPEED / 2);
+    getPropellerAt(2).spin(-PROPELLER_SPEED / 2);
     spin(SPEED);
 }
 
-/** Flying method */
-void AutoDrone::fly(double angle, double distance)
+/**
+ * Parametric constructor
+ * @param x position in x axis
+ * @param y position in y axis
+ */
+AutoDrone::AutoDrone(double x, double y, const Scene& _scene) : Drone(x, y), flying(false), dronePath(*this, _scene)
 {
-    spinPropellers();
-    if (!flying)
+}
+
+/** Set drone path to fly */
+void AutoDrone::makePath(double angle, double distance)
+{
+    flying = true;
+    dronePath.makeMoves(angle, distance);
+}
+
+/** Flying method */
+void AutoDrone::fly()
+{
+    if (flying)
     {
-        dronePath.makeMoves(angle, distance);
-        flying = true;
-    }
-    else
-    {
+        spinPropellers();
         switch (dronePath.getNextMove())
         {
-            case FlyStates::NONE:
-                break;
             case FlyStates::ASCENT:
                 moveUp();
                 break;
@@ -92,13 +90,17 @@ void AutoDrone::fly(double angle, double distance)
             case FlyStates::ROTATE_RIGHT:
                 rotateRight();
                 break;
-            case FlyStates::STOP:
-                break;
             case FlyStates::END:
                 flying = false;
                 break;
         }
     }
+}
+
+/** @return true if drone is flying */
+bool AutoDrone::isFlying() const
+{
+    return flying;
 }
 
 /**

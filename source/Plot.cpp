@@ -27,6 +27,9 @@ void Plot::drawAndClear()
     sendcommand("unset border");
     sendcommand("unset tics");
 
+    // Flush object
+    objects.push_back(" set object " + std::to_string(objects.size() + 1) + " polygon from 0,0,0 to 0,0,0 ");
+
     for (auto& i : objects)
         sendcommand(i);
 

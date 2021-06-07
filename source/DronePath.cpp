@@ -24,7 +24,7 @@ DronePath::DronePath(const AutoDrone& _drone, const Scene& _scene) : drone(_dron
 FlyStates DronePath::getNextMove()
 {
     if (moves.empty())
-        throw std::out_of_range("DronePath: no moves");
+        return FlyStates::NONE;
     auto ret = moves.front();
     moves.pop_front();
     return ret;
@@ -130,8 +130,8 @@ std::list<std::string> DronePath::getDrawString() const
                    pos = pos + (dir/abs(dir) * SPEED * count);
                    break;
                case FlyStates::LANDING:
-                   ret.push_back(getLineString(pos,  std::vector<double>({0, 0, SPEED * count})));
-                   //pos = pos - std::vector<double>({0, 0, SPEED * count});
+                   ret.push_back(getLineString(pos,  pos - std::vector<double>({0, 0, SPEED * count})));
+                   pos = pos - std::vector<double>({0, 0, SPEED * count});
                    break;
                case FlyStates::ROTATE_LEFT:
                    for (int i = 0; i < count; ++i)

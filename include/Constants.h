@@ -27,7 +27,7 @@ constexpr double DRONE_WIDTH = 15;
 constexpr double DRONE_LENGTH = 20;
 
 /// One step of drone
-constexpr double SPEED = 0.5;
+constexpr double SPEED = 1;
 
 /// One step of propeller
 constexpr double PROPELLER_SPEED = 15;
@@ -36,10 +36,10 @@ constexpr double PROPELLER_SPEED = 15;
 constexpr double MAX_ALTITUDE = 90;
 
 /// Size of map
-constexpr double MAP_SIZE = 120;
+constexpr double MAP_SIZE = 160;
 
 /// Options for program menu
-enum class Options{NONE, EXIT};
+enum class Options{NONE, EXIT, CHOOSE_DRONE, GET_POS, ADD_FIGURE, DEL_FIGURE};
 
 /// Fly state
 enum class FlyStates{NONE, ASCENT, FLYING, LANDING, ROTATE_LEFT, ROTATE_RIGHT, STOP, END};

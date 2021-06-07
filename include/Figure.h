@@ -11,6 +11,7 @@ class Figure : public Drawable
 {
 private:
     friend class Transform;
+    friend bool operator==(const Figure& fig1, const Figure& fig2);
 protected:
     std::vector<double> sP;
     std::vector<double> x;
@@ -20,7 +21,7 @@ public:
     Figure() = delete;
     Figure(std::vector<double> _x, std::vector<double> _y, std::vector<double> _z, std::vector<double> _sP = {0, 0, 0});
     std::vector<double> getCenterOfMass() const;
-    friend bool operator==(const Figure& fig1, const Figure& fig2);
+    std::vector<double> getPosition() const;
     std::list<std::string> getDrawString() const override = 0;
 };
 

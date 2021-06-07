@@ -24,6 +24,27 @@ Propeller::Propeller(const std::vector<double>& centerPoint)
     cuboids.push_back(temp);
 }
 
+/** Use Transform method to rotate propeller */
+void Propeller::spin(double angle)
+{
+    for(auto& i : cuboids)
+        Transform::rotateAroundCenterOfMass(i, angle);
+}
+
+/** Use Transform method to move propeller */
+void Propeller::move(const std::vector<double>& vec)
+{
+    for (auto& i : cuboids)
+        Transform::translate(i, vec);
+}
+
+/** Use Transform method to rotate around point propeller */
+void Propeller::rotateAround(double angle, const std::vector<double>& vec)
+{
+    for (auto& i : cuboids)
+        Transform::rotateAroundPoint(i, angle, vec);
+}
+
 /** Override method to change color of object */
 void Propeller::changeColor(std::string _color)
 {
@@ -44,25 +65,4 @@ std::list<std::string> Propeller::getDrawString() const
         ret.insert(ret.end(), temp.begin(), temp.end());
     }
     return ret;
-}
-
-/** Use Transform method to rotate propeller */
-void Propeller::spin(double angle)
-{
-    for(auto& i : cuboids)
-        Transform::rotateAroundCenterOfMass(i, angle);
-}
-
-/** Use Transform method to move propeller */
-void Propeller::move(const std::vector<double>& vec)
-{
-    for (auto& i : cuboids)
-        Transform::translate(i, vec);
-}
-
-/** Use Transform method to rotate around point propeller */
-void Propeller::rotateAround(double angle, const std::vector<double>& vec)
-{
-    for (auto& i : cuboids)
-        Transform::rotateAroundPoint(i, angle, vec);
 }

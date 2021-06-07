@@ -13,16 +13,14 @@ class Drone : public Cuboid
 private:
     std::vector<Propeller> propellers;
 protected:
-    void spin(double angle);
-    void move(const std::vector<double>& vec);
-    Propeller& operator[](int index);
+    Propeller& getPropellerAt(int index);
 public:
     explicit Drone(double x = 0, double y = 0);
-    std::vector<double> getPosition() const;
+    void spin(double angle);
+    void move(const std::vector<double>& vec);
     const std::vector<double>& getDirection() const;
-    std::list<std::string> getDrawString() const override;
     void changeColor(std::string _color) override;
+    std::list<std::string> getDrawString() const override;
 };
-
 
 #endif //ROTATION3D_DRONE_H

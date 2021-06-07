@@ -8,15 +8,63 @@
 
 #include <sstream>
 
-/** Default constructor set color to red */
-Drawable::Drawable() : color("#FF0000")
+/** @return style of object */
+std::string Drawable::getStyle() const
+{
+    return R"( fs border lc "#000000" transparent solid fc rgb ")" + color + "\"";
+}
+
+/** Default constructor set color to orange */
+Drawable::Drawable() : color("#E65B00")
 {
 }
 
-/** Parametric constructor */
-Drawable::Drawable(std::string _color)
+/**
+ * Draw parallelogram in gnuplot \n Use VectorAction.h
+ * @param sP start point
+ * @param a first vector starting in sP
+ * @param b second vector starting in sP
+ * @return string for gnuplot
+ */
+std::string Drawable::getParallelogramString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const
 {
-    changeColor(std::move(_color));
+    using namespace VectorAction;
+    std::stringstream ss;
+    ss << " polygon from " << sP << " to " << (sP + a) << " to " << (sP + a + b) << " to " << (sP + b) << " to " << sP;
+    ss << getStyle();
+    return ss.str();
+}
+
+/**
+ * Draw triangle in gnuplot \n Use VectorAction.h
+ * @param sP start point
+ * @param a first vector starting in sP
+ * @param b second vector starting in sP
+ * @return string for gnuplot
+ */
+std::string Drawable::getTriangleString(const std::vector<double>& sP, const std::vector<double>& a,
+                                        const std::vector<double>& b) const
+{
+    using namespace VectorAction;
+    std::stringstream ss;
+    ss << " polygon from " << sP << " to " << (sP + a) << " to " << (sP + b) << " to " << sP;
+    ss << getStyle();
+    return ss.str();
+}
+
+/**
+ * Draw line in gnuplot \n Use VectorAction.h
+ * @param sP start point
+ * @param eP end point
+ * @return string for gnuplot
+ */
+std::string Drawable::getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const
+{
+    using namespace VectorAction;
+    std::stringstream ss;
+    ss << " polygon from " << sP << " to " << eP << " to " << sP;
+    ss << getStyle();
+    return ss.str();
 }
 
 /**
@@ -35,58 +83,4 @@ void Drawable::changeColor(std::string _color)
         if ((_color[i] > 'F' || _color[i] < 'A') && (_color[i] > '9' || _color[i] < '0'))
             throw std::invalid_argument("Wrong format of color");
     color = _color;
-}
-
-/**
- * Draw parallelogram in gnuplot \n Use VectorAction.h
- * @param sP start point
- * @param a first vector starting in sP
- * @param b second vector starting in sP
- * @return string for gnuplot
- */
-std::string Drawable::getParallelogramString(const std::vector<double>& sP, const std::vector<double>& a, const std::vector<double>& b) const
-{
-    using namespace VectorAction;
-    std::stringstream ss;
-    ss << "polygon from " << sP << " to " << (sP + a) << " to " << (sP + a + b) << " to " << (sP + b) << " to " << sP;
-    ss << getStyle();
-    return ss.str();
-}
-
-/**
- * Draw triangle in gnuplot \n Use VectorAction.h
- * @param sP start point
- * @param a first vector starting in sP
- * @param b second vector starting in sP
- * @return string for gnuplot
- */
-std::string Drawable::getTriangleString(const std::vector<double>& sP, const std::vector<double>& a,
-                                        const std::vector<double>& b) const
-{
-    using namespace VectorAction;
-    std::stringstream ss;
-    ss << "polygon from " << sP << " to " << (sP + a) << " to " << (sP + b) << " to " << sP;
-    ss << getStyle();
-    return ss.str();
-}
-
-/**
- * Draw line in gnuplot \n Use VectorAction.h
- * @param sP start point
- * @param eP end point
- * @return string for gnuplot
- */
-std::string Drawable::getLineString(const std::vector<double>& sP, const std::vector<double>& eP) const
-{
-    using namespace VectorAction;
-    std::stringstream ss;
-    ss << "polygon from " << sP << " to " << eP << " to " << sP;
-    ss << getStyle();
-    return ss.str();
-}
-
-/** @return style of object */
-std::string Drawable::getStyle() const
-{
-    return R"(fs border lc "#000000" transparent solid fc rgb ")" + color + "\"";
 }
